@@ -21,6 +21,21 @@ app.get('/test', (req, res) => {
     const timeString = `${hours}:${minutes}`;
     res.json({ status: 200, message: timeString });
   });
+  // Route for /hello/<ID>
+app.get('/hello/:id?', (req, res) => {
+    const id = req.params.id || 'stranger'; // Default to 'stranger' if no ID is provided
+    res.json({ status: 200, message: `Hello, ${id}` });
+  });
+  
+  // Route for /search?s=<SEARCH>
+  app.get('/search', (req, res) => {
+    const searchQuery = req.query.s;
+    if (searchQuery) {
+      res.json({ status: 200, message: "ok", data: searchQuery });
+    } else {
+      res.status(500).json({ status: 500, error: true, message: "you have to provide a search" });
+    }
+  });
 
 // Make the server listen on the specified port
 app.listen(PORT, () => {
