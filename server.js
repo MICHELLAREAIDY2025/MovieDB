@@ -2,6 +2,13 @@
 const express = require('express');
 const app = express();
 const PORT = 3000; // You can choose any port
+// Sample movies array
+const movies = [
+    { title: 'Jaws', year: 1975, rating: 8 },
+    { title: 'Avatar', year: 2009, rating: 7.8 },
+    { title: 'Brazil', year: 1985, rating: 8 },
+    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
+];
 
 // Define a route that responds with 'ok'
 app.get('*', (req, res) => {
@@ -36,6 +43,26 @@ app.get('/hello/:id?', (req, res) => {
       res.status(500).json({ status: 500, error: true, message: "you have to provide a search" });
     }
   });
+  // CRUD Routes for Movies
+app.post('/movies/create', (req, res) => {
+    // Placeholder for creating a movie
+    res.json({ status: 200, message: "Movie created" });
+});
+
+app.get('/movies/read', (req, res) => {
+    // Respond with the list of movies
+    res.json({ status: 200, data: movies });
+});
+
+app.put('/movies/update', (req, res) => {
+    // Placeholder for updating a movie
+    res.json({ status: 200, message: "Movie updated" });
+});
+
+app.delete('/movies/delete', (req, res) => {
+    // Placeholder for deleting a movie
+    res.json({ status: 200, message: "Movie deleted" });
+});
 
 // Make the server listen on the specified port
 app.listen(PORT, () => {
